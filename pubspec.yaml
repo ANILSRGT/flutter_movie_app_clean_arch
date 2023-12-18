@@ -48,7 +48,6 @@ dev_dependencies:
     sdk: flutter
   very_good_analysis: ^5.1.0
 
-  mockito: ^5.4.4
   build_runner: ^2.4.7
   json_serializable: ^6.7.1
   envied_generator: ^0.5.2
