@@ -7,9 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_movie_app/app/app_container.dart';
 import 'package:logger/logger.dart';
 
-@immutable
-
 /// This class is used to initialize the app
+@immutable
 final class AppInit {
   /// Initialize the app **(Required)**
   static Future<void> setup() async {

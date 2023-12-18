@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/model/response_model.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/data/models/movie/movie_model.dart';
 
 /// Movie remote data source abstract class.

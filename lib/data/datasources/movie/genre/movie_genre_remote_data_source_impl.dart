@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter_movie_app/app/init/app_env.dart';
-import 'package:flutter_movie_app/core/model/response_model.dart';
+import 'package:core/core.dart';
+import 'package:flutter_movie_app/app/init/env/app_env.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source.dart';
 import 'package:flutter_movie_app/data/models/movie/movie_genre_model.dart';
 import 'package:http/http.dart' as http;

@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/base/base_model.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/domain/entities/movie/movie_genre_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 

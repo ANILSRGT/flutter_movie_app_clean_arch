@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/model/response_model.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/domain/entities/movie/movie_genre_entity.dart';
 
 /// [MovieGenreRepository] is an abstract class that defines the

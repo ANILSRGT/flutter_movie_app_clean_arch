@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/model/response_model.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source.dart';
 import 'package:flutter_movie_app/domain/entities/movie/movie_genre_entity.dart';
 import 'package:flutter_movie_app/domain/repositories/movie/movie_genre_repositort.dart';

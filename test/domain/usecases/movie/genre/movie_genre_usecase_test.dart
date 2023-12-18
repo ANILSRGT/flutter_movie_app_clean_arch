@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/base/base_usecase.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/repositories/genre/movie_genre_repository_impl.dart';
@@ -26,20 +26,16 @@ void main() {
     });
 
     test('should return a list of genres', () async {
-      // arrange
-      // act
       final result = await getMovieGenresUseCase.call(NoParams());
-      // assert
+
       expect(result.isSuccessPositive, true);
       expect(result.asSuccessPositive.data, isList);
       expect(result.asSuccessPositive.data, isNotEmpty);
     });
 
     test('should return a genre by id', () async {
-      // arrange
-      // act
       final result = await getMovieGenreByIdUseCase.call(16);
-      // assert
+
       expect(result.isSuccessPositive, true);
     });
   });

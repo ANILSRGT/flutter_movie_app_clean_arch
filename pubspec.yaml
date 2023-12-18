@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Navigation
+  auto_route: ^7.8.4
+
   # Serialization
   json_annotation: ^4.8.1
   equatable: ^2.0.5
@@ -30,6 +33,14 @@ dependencies:
   envied: ^0.5.2
   kartal: ^3.5.0
   easy_logger: ^0.0.2
+
+  # Local Packages
+  common:
+    path: ./modules/common
+  core:
+    path: ./modules/core
+  widgets:
+    path: ./modules/widgets
 
 dev_dependencies:
   flutter_test:

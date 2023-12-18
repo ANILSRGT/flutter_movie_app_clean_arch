@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/base/base_usecase.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/repositories/movie/movie_repository_impl.dart';
@@ -28,30 +28,24 @@ void main() {
     });
 
     test('should return a list of trending movies', () async {
-      // arrange
-      // act
       final result = await getTrendingMoviesUseCase.call(NoParams());
-      // assert
+
       expect(result.isSuccessPositive, true);
       expect(result.asSuccessPositive.data, isList);
       expect(result.asSuccessPositive.data, isNotEmpty);
     });
 
     test('should return a list of popular movies', () async {
-      // arrange
-      // act
       final result = await getPopularMoviesUseCase.call(NoParams());
-      // assert
+
       expect(result.isSuccessPositive, true);
       expect(result.asSuccessPositive.data, isList);
       expect(result.asSuccessPositive.data, isNotEmpty);
     });
 
     test('should return a list of searched movies', () async {
-      // arrange
-      // act
       final result = await searchMoviesUseCase.call('a');
-      // assert
+
       expect(result.isSuccessPositive, true);
       expect(result.asSuccessPositive.data, isList);
       expect(result.asSuccessPositive.data, isNotEmpty);

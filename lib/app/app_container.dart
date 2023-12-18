@@ -1,3 +1,4 @@
+import 'package:common/core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source_impl.dart';
@@ -21,6 +22,7 @@ final class AppContainer {
     _sl
       //* <------------- Core -------------> //
       ..registerLazySingleton(http.Client.new)
+      ..registerLazySingleton(PBotToast.new)
       //* <------------- Data sources -------------> //
       ..registerLazySingleton(() => MovieRemoteDataSourceImpl(_sl()))
       ..registerLazySingleton(() => MovieGenreRemoteDataSourceImpl(_sl()))
@@ -33,7 +35,9 @@ final class AppContainer {
       ..registerLazySingleton(() => GetTrendingMoviesUseCase(_sl()))
       //~ Use cases (genre)
       ..registerLazySingleton(() => GetMovieGenresUseCase(_sl()))
-      ..registerLazySingleton(() => GetMovieGenreByIdUseCase(_sl()));
+      ..registerLazySingleton(() => GetMovieGenreByIdUseCase(_sl()))
+      //* <------------- Dependencies -------------> //
+      ..registerLazySingleton(() => PToaster(_sl()));
   }
 
   /// Get an instance of a registered dependency

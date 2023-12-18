@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs
-import 'package:flutter_movie_app/core/base/base_entity.dart';
+import 'package:core/core.dart';
 
 class MovieGenreEntity extends BaseEntity {
   MovieGenreEntity({

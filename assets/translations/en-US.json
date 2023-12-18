@@ -1,0 +1,23 @@
+{
+    "core": {
+        "errors": {
+            "errorTitle": "Error",
+            "somethingWentWrong": "Something went wrong.",
+            "firebaseAuth": {
+                "emailAlreadyInUse": "This email address is already in use",
+                "wrongPassword": "E-mail or password is wrong",
+                "userNotFound": "User not found",
+                "userDisabled": "User disabled",
+                "operationNotAllowed": "Operation not allowed",
+                "weakPassword": "Password is too weak",
+                "invalidEmail": "Invalid email address",
+                "tooManyRequests": "Too many requests. Please try again later..."
+            }
+        }
+    },
+    "features": {
+        "errors": {
+            "errorTitle": "Error"
+        }
+    }
+}

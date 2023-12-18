@@ -1,4 +1,4 @@
-import 'package:flutter_movie_app/core/base/base_usecase.dart';
+import 'package:core/core.dart';
 import 'package:flutter_movie_app/domain/entities/movie/movie_entity.dart';
 import 'package:flutter_movie_app/domain/repositories/movie/movie_repository.dart';
 

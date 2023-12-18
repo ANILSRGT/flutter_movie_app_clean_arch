@@ -1,0 +1,23 @@
+{
+    "core": {
+        "errors": {
+            "errorTitle": "Hata",
+            "somethingWentWrong": "Bir şeyler ters gitti.",
+            "firebaseAuth": {
+                "emailAlreadyInUse": "Bu e-posta adresi zaten kullanılıyor",
+                "wrongPassword": "E-posta veya şifre yanlış",
+                "userNotFound": "Kullanıcı bulunamadı",
+                "userDisabled": "Kullanıcı devre dışı",
+                "operationNotAllowed": "İşleme izin verilmedi",
+                "weakPassword": "Şifre çok zayıf",
+                "invalidEmail": "Geçersiz e-posta adresi",
+                "tooManyRequests": "Çok fazla istek. Lütfen daha sonra tekrar deneyin..."
+            }
+        }
+    },
+    "features": {
+        "errors": {
+            "errorTitle": "Hata"
+        }
+    }
+}
