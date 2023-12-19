@@ -11,6 +11,7 @@ final class SearchMoviesUseCase
   /// A [MovieRepository] instance.
   final MovieRepository movieRepository;
 
+  /// [params] is the search query.
   @override
   Future<ResponseModel<List<MovieEntity>>> call(String params) async {
     return movieRepository.searchMovies(params);

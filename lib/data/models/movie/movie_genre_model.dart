@@ -10,8 +10,8 @@ class MovieGenreModel extends MovieGenreEntity
     implements BaseModel<MovieGenreModel> {
   /// [MovieGenreModel] constructor.
   MovieGenreModel({
-    required super.id,
-    required super.name,
+    super.id,
+    super.name,
   });
 
   factory MovieGenreModel.fromJson(Map<String, dynamic> json) =>

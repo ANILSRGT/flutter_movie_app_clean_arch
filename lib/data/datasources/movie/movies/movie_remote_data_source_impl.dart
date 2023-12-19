@@ -80,9 +80,11 @@ final class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
       final body = response.body;
       final dataDecode = jsonDecode(body) as Map<String, dynamic>;
       final results = dataDecode['results'] as List<dynamic>;
-      final movies = results
-          .map((e) => MovieModel.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final movies = <MovieModel>[];
+      for (final element in results) {
+        if (element == null) continue;
+        movies.add(MovieModel.fromJson(element as Map<String, dynamic>));
+      }
 
       return ResponseModelSuccessPositive(data: movies);
     } catch (e) {

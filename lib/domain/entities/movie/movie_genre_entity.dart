@@ -3,12 +3,12 @@ import 'package:core/core.dart';
 
 class MovieGenreEntity extends BaseEntity {
   MovieGenreEntity({
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
   });
 
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
   @override
   List<Object?> get props => [

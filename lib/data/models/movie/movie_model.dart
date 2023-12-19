@@ -9,14 +9,14 @@ part 'movie_model.g.dart';
 class MovieModel extends MovieEntity implements BaseModel<MovieModel> {
   /// [MovieModel] constructor.
   MovieModel({
-    required super.id,
-    required super.title,
-    required super.overview,
-    required super.posterPath,
-    required super.backdropPath,
-    required super.genreIds,
-    required super.voteAverage,
-    required super.voteCount,
+    super.id,
+    super.title,
+    super.overview,
+    super.posterPath,
+    super.backdropPath,
+    super.genreIds,
+    super.voteAverage,
+    super.voteCount,
   });
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>
@@ -46,11 +46,12 @@ class MovieModel extends MovieEntity implements BaseModel<MovieModel> {
       overview: overview ?? this.overview,
       posterPath: posterPath ?? this.posterPath,
       backdropPath: backdropPath ?? this.backdropPath,
-      genreIds: genreIds?.call(this.genreIds) ?? this.genreIds,
+      genreIds: genreIds?.call(this.genreIds ?? []) ?? this.genreIds,
       voteAverage: addVote == null
           ? voteAverage
-          : (voteAverage * voteCount + addVote) / (voteCount + 1),
-      voteCount: voteCount + 1,
+          : ((voteAverage ?? 0) * (voteCount ?? 0) + addVote) /
+              ((voteCount ?? 0) + 1),
+      voteCount: (voteCount ?? 0) + 1,
     );
   }
 }
