@@ -5,10 +5,14 @@ final class RootViewState extends BaseBlocState {
   /// [RootViewState] constructor.
   RootViewState({
     this.isBusy = true,
+    this.currentTab = RootTabs.home,
   });
 
   /// [isBusy] is a state when the root screen is busy.
-  final bool? isBusy;
+  final bool isBusy;
+
+  /// [currentTab] is the current tab.
+  final RootTabs currentTab;
 
   @override
   List<Object?> get props => [isBusy];
@@ -17,9 +21,11 @@ final class RootViewState extends BaseBlocState {
   /// and change its properties.
   RootViewState copyWith({
     bool? isBusy,
+    RootTabs? currentTab,
   }) {
     return RootViewState(
       isBusy: isBusy ?? this.isBusy,
+      currentTab: currentTab ?? this.currentTab,
     );
   }
 }

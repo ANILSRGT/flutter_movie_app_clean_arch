@@ -5,4 +5,5 @@ export 'dialog/index.dart';
 export 'icon/index.dart';
 export 'rate/index.dart';
 export 'scroll_view/index.dart';
+export 'tabbar/index.dart';
 export 'text_form_field/index.dart';

@@ -1,7 +1,8 @@
 part of 'splash_view.dart';
 
 /// [SplashViewMixin] holds the state for splash screen.
-mixin SplashViewMixin on State<SplashView> implements FunctionDurationMixin {
+mixin SplashViewMixin on BaseViewState<SplashView>
+    implements FunctionDurationMixin {
   /// [SplashViewCubit] is the business logic and state.
   late final SplashViewCubit splashViewCubit;
 

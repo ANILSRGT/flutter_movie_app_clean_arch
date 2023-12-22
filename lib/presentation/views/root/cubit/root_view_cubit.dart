@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_movie_app/presentation/views/root/widgets/root_tab_widget.dart';
 
 part 'root_view_state.dart';
 
@@ -11,5 +12,12 @@ class RootViewCubit extends BaseCubit<RootViewState> {
   bool changeBusy(bool isBusy) {
     emit(state.copyWith(isBusy: isBusy));
     return isBusy;
+  }
+
+  /// [changeTab] is a method to change the current tab.
+  /// It returns the current tab.
+  RootTabs changeTab(RootTabs currentTab) {
+    emit(state.copyWith(currentTab: currentTab));
+    return currentTab;
   }
 }

@@ -1,16 +1,15 @@
-part of '../splash_view.dart';
+import 'package:flutter/material.dart';
 
-/// [_SplashLogo] is the logo of the splash screen.
-class _SplashLogo extends StatefulWidget {
-  /// [_SplashLogo] constructor
-  const _SplashLogo();
+/// [SplashLogo] is the logo of the splash screen.
+class SplashLogo extends StatefulWidget {
+  /// [SplashLogo] constructor
+  const SplashLogo({super.key});
 
   @override
-  State<_SplashLogo> createState() => _SplashLogoState();
+  State<SplashLogo> createState() => _SplashLogoState();
 }
 
-class _SplashLogoState extends State<_SplashLogo>
-    with TickerProviderStateMixin {
+class _SplashLogoState extends State<SplashLogo> with TickerProviderStateMixin {
   final _scaleTween = Tween<double>(begin: 0.9, end: 1);
   final _fadeTween = Tween<double>(begin: 0.5, end: 1);
   late final _controller = AnimationController(
