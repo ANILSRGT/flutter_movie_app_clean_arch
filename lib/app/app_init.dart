@@ -5,7 +5,7 @@ import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_movie_app/app/app_container.dart';
-import 'package:logger/logger.dart';
+// import 'package:logger/logger.dart';
 
 /// This class is used to initialize the app
 @immutable
@@ -13,7 +13,7 @@ final class AppInit {
   /// Initialize the app **(Required)**
   static Future<void> setup() async {
     await runZonedGuarded(_initialize, (error, stack) {
-      Logger().e(error);
+      // Logger().e(error);
     });
   }
 
@@ -28,9 +28,9 @@ final class AppInit {
       ],
     );
 
-    FlutterError.onError = (details) {
-      Logger().e(details.exceptionAsString());
-    };
+    // FlutterError.onError = (details) {
+    //   Logger().e(details.exceptionAsString());
+    // };
 
     AppContainer.init();
   }

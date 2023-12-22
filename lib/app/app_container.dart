@@ -1,5 +1,6 @@
 import 'package:common/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_movie_app/app/init/navigation/app_router.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/repositories/genre/movie_genre_repository_impl.dart';
@@ -19,25 +20,34 @@ final class AppContainer {
   /// Initialize the dependencies
   static void init() {
     // Register your dependencies here
+    final movieRemoteDataSourceImpl = MovieRemoteDataSourceImpl(http.Client());
+    final movieGenreRemoteDataSourceImpl =
+        MovieGenreRemoteDataSourceImpl(http.Client());
+    final movieRepositoryImpl = MovieRepositoryImpl(movieRemoteDataSourceImpl);
+    final movieGenreRepositoryImpl =
+        MovieGenreRepositoryImpl(movieGenreRemoteDataSourceImpl);
+    final pBotToast = PBotToast();
+
     _sl
       //* <------------- Core -------------> //
-      ..registerLazySingleton(http.Client.new)
-      ..registerLazySingleton(PBotToast.new)
-      //* <------------- Data sources -------------> //
-      ..registerLazySingleton(() => MovieRemoteDataSourceImpl(_sl()))
-      ..registerLazySingleton(() => MovieGenreRemoteDataSourceImpl(_sl()))
-      //* <------------- Repositories -------------> //
-      ..registerLazySingleton(() => MovieRepositoryImpl(_sl()))
-      ..registerLazySingleton(() => MovieGenreRepositoryImpl(_sl()))
+      ..registerLazySingleton(AppRouter.new)
+      //* <------------- Dependencies -------------> //
+      ..registerLazySingleton(() => PToaster(pBotToast))
       //* <------------- Use cases -------------> //
       //~ Use cases (movie)
-      ..registerLazySingleton(() => GetPopularMoviesUseCase(_sl()))
-      ..registerLazySingleton(() => GetTrendingMoviesUseCase(_sl()))
+      ..registerLazySingleton(
+        () => GetPopularMoviesUseCase(movieRepositoryImpl),
+      )
+      ..registerLazySingleton(
+        () => GetTrendingMoviesUseCase(movieRepositoryImpl),
+      )
       //~ Use cases (genre)
-      ..registerLazySingleton(() => GetMovieGenresUseCase(_sl()))
-      ..registerLazySingleton(() => GetMovieGenreByIdUseCase(_sl()))
-      //* <------------- Dependencies -------------> //
-      ..registerLazySingleton(() => PToaster(_sl()));
+      ..registerLazySingleton(
+        () => GetMovieGenresUseCase(movieGenreRepositoryImpl),
+      )
+      ..registerLazySingleton(
+        () => GetMovieGenreByIdUseCase(movieGenreRepositoryImpl),
+      );
   }
 
   /// Get an instance of a registered dependency

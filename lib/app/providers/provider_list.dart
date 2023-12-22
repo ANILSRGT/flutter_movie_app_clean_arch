@@ -10,6 +10,5 @@ final class ProviderList {
   /// Returns the list of providers
   List<SingleChildWidget> get providers => [
         ChangeNotifierProvider(create: (_) => ThemeNotifier()),
-        // ChangeNotifierProvider(create: (_) => RouteAuthNotifier()..init()),
       ];
 }

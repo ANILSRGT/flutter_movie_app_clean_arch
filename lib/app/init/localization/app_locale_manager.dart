@@ -12,9 +12,12 @@ final class AppLocaleManager extends EasyLocalization {
   }) : super(
           supportedLocales: supportedAppLocales.map((e) => e.locale).toList(),
           path: _translationPath,
+          fallbackLocale: _defaultLocale.locale,
         );
 
   static const String _translationPath = 'assets/translations';
+
+  static const Locales _defaultLocale = Locales.enUS;
 
   /// List of supported locales for the app
   static final List<Locales> supportedAppLocales = [

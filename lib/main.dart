@@ -14,7 +14,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppInit.setup();
   runApp(AppLocaleManager(child: const _MainApp()));
-  runApp(const _MainApp());
 }
 
 class _MainApp extends StatelessWidget {
@@ -27,8 +26,8 @@ class _MainApp extends StatelessWidget {
     return MultiProvider(
       providers: ProviderList().providers,
       child: Builder(
-        builder: (context) {
-          final themeManager = context.watch<ThemeNotifier>();
+        builder: (rootContext) {
+          final themeManager = rootContext.watch<ThemeNotifier>();
           return SafeArea(
             child: MaterialApp.router(
               debugShowCheckedModeBanner: false,
@@ -37,17 +36,17 @@ class _MainApp extends StatelessWidget {
               routerDelegate: appRouter.delegate(
                 navigatorObservers: () => [toaster.toast.observer],
               ),
-              builder: (context, child) {
-                child = CustomResponsive.build(context, child);
-                child = toaster.toast.build(context, child);
+              builder: (ctx, child) {
+                child = CustomResponsive.build(ctx, child);
+                child = toaster.toast.build(ctx, child);
                 return child;
               },
               theme: themeManager.currentTheme.themeInfo(true).themeData,
               darkTheme: themeManager.currentTheme.themeInfo(false).themeData,
               themeMode: themeManager.currentThemeMode,
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
+              localizationsDelegates: rootContext.localizationDelegates,
+              supportedLocales: rootContext.supportedLocales,
+              locale: rootContext.locale,
             ),
           );
         },
