@@ -13,6 +13,7 @@ dependencies:
   # UI
   carousel_slider: ^4.2.1
   flutter_sticky_widgets: ^0.0.3
+  shimmer: ^3.0.0
 
   # Navigation
   auto_route: ^7.8.4

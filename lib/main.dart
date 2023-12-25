@@ -7,6 +7,7 @@ import 'package:flutter_movie_app/app/init/localization/app_locale_manager.dart'
 import 'package:flutter_movie_app/app/init/navigation/app_router.dart';
 import 'package:flutter_movie_app/app/providers/provider_list.dart';
 import 'package:flutter_movie_app/app/providers/theme_notifier.dart';
+import 'package:flutter_movie_app/presentation/bloc/bloc_provider_list.dart';
 import 'package:provider/provider.dart';
 import 'package:widgets/widgets.dart';
 
@@ -24,7 +25,7 @@ class _MainApp extends StatelessWidget {
     final appRouter = AppContainer.read<AppRouter>();
     final toaster = AppContainer.read<PToaster>();
     return MultiProvider(
-      providers: ProviderList().providers,
+      providers: ProviderList().providers + BlocProviderList().providers,
       child: Builder(
         builder: (rootContext) {
           final themeManager = rootContext.watch<ThemeNotifier>();
