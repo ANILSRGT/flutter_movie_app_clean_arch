@@ -4,7 +4,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_movie_app/app/base/base_view_state.dart';
-import 'package:flutter_movie_app/presentation/bloc/movie/movies/movie_cubit.dart';
+import 'package:flutter_movie_app/presentation/bloc/movie/movie_cubit.dart';
 import 'package:flutter_movie_app/presentation/views/home/cubit/home_view_cubit.dart';
 import 'package:flutter_movie_app/presentation/widgets/header_text.dart';
 import 'package:flutter_movie_app/presentation/widgets/movie/introduction_movie_card.dart';
@@ -98,9 +98,9 @@ class _HomeViewState extends BaseViewState<HomeView>
       mainAxisSpacing: context.sized.normalValue,
       crossAxisSpacing: context.sized.normalValue,
       children: List.generate(
-        movieCubit.state.movies.length,
+        movieCubit.state.popularMovies.length,
         (index) {
-          final movie = movieCubit.state.movies[index];
+          final movie = movieCubit.state.popularMovies[index];
           return MovieCard(
             id: movie.id,
             onTap: (id) {},
@@ -110,6 +110,6 @@ class _HomeViewState extends BaseViewState<HomeView>
           );
         },
       ),
-    ).ext.toVisible(value: movieCubit.state.movies.isNotEmpty);
+    ).ext.toVisible(value: movieCubit.state.popularMovies.isNotEmpty);
   }
 }
