@@ -10,6 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # UI
+  carousel_slider: ^4.2.1
+  flutter_sticky_widgets: ^0.0.3
+
   # Navigation
   auto_route: ^7.8.4
 

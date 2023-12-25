@@ -1,7 +1,7 @@
 part of 'root_view_cubit.dart';
 
 /// [RootViewState] is a class for managing the state of the root screen.
-final class RootViewState extends BaseBlocState {
+class RootViewState extends BaseBlocState {
   /// [RootViewState] constructor.
   RootViewState({
     this.isBusy = true,
@@ -15,7 +15,7 @@ final class RootViewState extends BaseBlocState {
   final RootTabs currentTab;
 
   @override
-  List<Object?> get props => [isBusy];
+  List<Object?> get props => [isBusy, currentTab];
 
   /// [copyWith] is a method to copy the current object
   /// and change its properties.

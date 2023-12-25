@@ -9,15 +9,13 @@ class RootViewCubit extends BaseCubit<RootViewState> {
   RootViewCubit() : super(initialState: RootViewState());
 
   /// [changeBusy] is a method to change the isBusy state.
-  bool changeBusy(bool isBusy) {
+  void changeBusy(bool isBusy) {
     emit(state.copyWith(isBusy: isBusy));
-    return isBusy;
   }
 
   /// [changeTab] is a method to change the current tab.
   /// It returns the current tab.
-  RootTabs changeTab(RootTabs currentTab) {
+  void changeTab(RootTabs currentTab) {
     emit(state.copyWith(currentTab: currentTab));
-    return currentTab;
   }
 }

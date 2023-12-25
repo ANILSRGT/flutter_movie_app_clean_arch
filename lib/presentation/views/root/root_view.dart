@@ -23,7 +23,10 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends BaseViewState<RootView>
-    with RootViewMixin, FunctionDurationMixin {
+    with
+        RootViewMixin,
+        FunctionDurationMixin,
+        SingleTickerProviderStateMixin<RootView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RootViewCubit>(
@@ -77,18 +80,17 @@ class _RootViewState extends BaseViewState<RootView>
   }
 
   Widget _buildBody() {
-    return const DefaultTabController(
-      length: 2,
-      child: TabBarView(
-        children: [
-          CachedTabBarItem(
-            tab: HomeView(),
-          ),
-          CachedTabBarItem(
-            tab: ExploreView(),
-          ),
-        ],
-      ),
+    return PageView(
+      controller: rootPageController,
+      onPageChanged: onChangedTab,
+      children: const [
+        CachedTabBarItem(
+          tab: HomeView(),
+        ),
+        CachedTabBarItem(
+          tab: ExploreView(),
+        ),
+      ],
     );
   }
 }
