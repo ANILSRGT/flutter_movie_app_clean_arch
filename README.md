@@ -1,6 +1,6 @@
 # Flutter Movie App - Clean Architecture
 
-Bu proje, Flutter kullanarak Clean Architecture prensiplerine uygun bir uygulama geliştirmek amacıyla oluşturulmuştur. Uygulama, REST API üzerinden veri çekme, BLoC ve Riverpod gibi state management çözümleri, auto_route ile navigasyon, get_it ile bağımlılık enjeksiyonu, easy_localization ile çoklu dil desteği, json_serializable ve equatable kullanımı, envied ile ortam değişkenleri, kartal paketi ile temel fonksiyonlar gibi birçok önemli konsepti içermektedir.
+Bu proje, **Flutter** kullanarak **`Clean Architecture`** prensiplerine uygun bir uygulama geliştirmek amacıyla oluşturulmuştur. Uygulama, **`REST API`** üzerinden veri çekme, **`BLoC`** state management, **`auto_route`** ile navigasyon, **`get_it`** ile bağımlılık enjeksiyonu, **`easy_localization`** ile çoklu dil desteği, **`json_serializable`** ve **`equatable`** kullanımı, **`envied`** ile ortam değişkenleri, **`kartal`** paketi ile temel fonksiyonlar gibi birçok önemli konsepti içermektedir.
 
 ## Proje Yapısı
 
