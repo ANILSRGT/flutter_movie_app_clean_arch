@@ -1,7 +1,10 @@
 import 'package:common/core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_movie_app/app/init/cache/caches/cache_manager.dart';
+import 'package:flutter_movie_app/app/init/cache/caches/shared_preferences/shared_prefs_cache.dart';
 import 'package:flutter_movie_app/app/init/navigation/app_router.dart';
 import 'package:flutter_movie_app/data/datasources/movie/genre/movie_genre_remote_data_source_impl.dart';
+import 'package:flutter_movie_app/data/datasources/movie/movies/movie_local_data_source_impl.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/repositories/genre/movie_genre_repository_impl.dart';
 import 'package:flutter_movie_app/data/repositories/movie/movie_repository_impl.dart';
@@ -18,12 +21,18 @@ final class AppContainer {
   static final _sl = GetIt.instance;
 
   /// Initialize the dependencies
-  static void init() {
+  static Future<void> init() async {
+    // Initialize for dependencies that require async initialization
+    final cacheManager = CacheManager(SharedPrefsCache());
+    await cacheManager.init();
+
     // Register your dependencies here
     final movieRemoteDataSourceImpl = MovieRemoteDataSourceImpl(http.Client());
+    final movieLocalDataSourceImpl = MovieLocalDataSourceImpl(cacheManager);
     final movieGenreRemoteDataSourceImpl =
         MovieGenreRemoteDataSourceImpl(http.Client());
-    final movieRepositoryImpl = MovieRepositoryImpl(movieRemoteDataSourceImpl);
+    final movieRepositoryImpl = MovieRepositoryImpl(
+        movieRemoteDataSourceImpl, movieLocalDataSourceImpl);
     final movieGenreRepositoryImpl =
         MovieGenreRepositoryImpl(movieGenreRemoteDataSourceImpl);
     final pBotToast = PBotToast();

@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_movie_app/data/datasources/movie/movies/movie_local_data_source.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source.dart';
 import 'package:flutter_movie_app/domain/entities/movie/movie_entity.dart';
 import 'package:flutter_movie_app/domain/repositories/movie/movie_repository.dart';
@@ -6,10 +7,13 @@ import 'package:flutter_movie_app/domain/repositories/movie/movie_repository.dar
 /// [MovieRepositoryImpl] is the implementation of [MovieRepository]
 class MovieRepositoryImpl extends MovieRepository {
   /// [MovieRepositoryImpl] constructor
-  MovieRepositoryImpl(this.movieRemoteDataSource);
+  MovieRepositoryImpl(this.movieRemoteDataSource, this.movieLocalDataSource);
 
   /// [movieRemoteDataSource] instance of [MovieRemoteDataSource]
   final MovieRemoteDataSource movieRemoteDataSource;
+
+  /// [movieLocalDataSource] instance of [MovieLocalDataSource]
+  final MovieLocalDataSource movieLocalDataSource;
 
   @override
   Future<ResponseModel<List<MovieEntity>>> getPopularMovies() =>

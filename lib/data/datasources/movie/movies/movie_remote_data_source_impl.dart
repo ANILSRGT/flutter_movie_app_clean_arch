@@ -8,12 +8,12 @@ import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_dat
 import 'package:flutter_movie_app/data/models/movie/movie_model.dart';
 import 'package:http/http.dart' as http;
 
-/// Movie remote data source abstract class.
+/// Movie remote data source implementation.
 final class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   /// [MovieRemoteDataSourceImpl] constructor.
   MovieRemoteDataSourceImpl(this.client);
 
-  /// Dio instance.
+  /// [http.Client] instance.
   final http.Client client;
 
   String get _baseUrl => AppEnv.instance.env.baseUrl;

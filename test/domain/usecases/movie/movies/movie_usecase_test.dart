@@ -1,5 +1,9 @@
 import 'package:core/core.dart';
+import 'package:flutter_movie_app/app/init/cache/caches/cache_manager.dart';
+import 'package:flutter_movie_app/app/init/cache/caches/shared_preferences/shared_prefs_cache.dart';
 import 'package:flutter_movie_app/app/init/env/app_env.dart';
+import 'package:flutter_movie_app/data/datasources/movie/movies/movie_local_data_source.dart';
+import 'package:flutter_movie_app/data/datasources/movie/movies/movie_local_data_source_impl.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source.dart';
 import 'package:flutter_movie_app/data/datasources/movie/movies/movie_remote_data_source_impl.dart';
 import 'package:flutter_movie_app/data/repositories/movie/movie_repository_impl.dart';
@@ -16,7 +20,9 @@ void main() {
   group('Movie UseCases', () {
     late http.Client client;
     late AppEnv appEnv;
+    late CacheManager cacheManager;
     late MovieRemoteDataSource movieRemoteDataSource;
+    late MovieLocalDataSource movieLocalDataSource;
     late MovieRepository movieRepository;
     late GetTrendingMoviesUseCase getTrendingMoviesUseCase;
     late GetPopularMoviesUseCase getPopularMoviesUseCase;
@@ -24,11 +30,15 @@ void main() {
     late GetMoviePosterUrlUseCase getMoviePosterUrlUseCase;
     late GetMovieBackdropUrlUseCase getMovieBackdropUrlUseCase;
 
-    setUp(() {
+    setUp(() async {
       client = http.Client();
       appEnv = AppEnv.instance;
+      cacheManager = CacheManager(SharedPrefsCache());
+      await cacheManager.init();
       movieRemoteDataSource = MovieRemoteDataSourceImpl(client);
-      movieRepository = MovieRepositoryImpl(movieRemoteDataSource);
+      movieLocalDataSource = MovieLocalDataSourceImpl(cacheManager);
+      movieRepository =
+          MovieRepositoryImpl(movieRemoteDataSource, movieLocalDataSource);
       getTrendingMoviesUseCase = GetTrendingMoviesUseCase(movieRepository);
       getPopularMoviesUseCase = GetPopularMoviesUseCase(movieRepository);
       searchMoviesUseCase = SearchMoviesUseCase(movieRepository);

@@ -35,6 +35,9 @@ dependencies:
   # Localizations
   easy_localization: ^3.0.0
 
+  # Cache
+  shared_preferences: ^2.2.2
+
   # Utils
   envied: ^0.5.2
   kartal: ^3.5.0

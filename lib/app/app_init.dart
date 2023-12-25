@@ -32,6 +32,6 @@ final class AppInit {
     //   Logger().e(details.exceptionAsString());
     // };
 
-    AppContainer.init();
+    await AppContainer.init();
   }
 }
