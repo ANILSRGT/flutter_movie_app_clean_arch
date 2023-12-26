@@ -91,3 +91,14 @@ extension ResponseModelSuccessNegativeExtension<T>
         message: message,
       );
 }
+
+/// Extension for [ResponseModelSuccessPositive]
+extension ResponseModelSuccessPositiveExtension<T>
+    on ResponseModelSuccessPositive<T> {
+  /// cast to [ResponseModelSuccessPositive]
+  /// <br/>Example: `response.asSuccessPositive.castTo<YourType>()`
+  ResponseModelSuccessPositive<R> convertTo<R>() =>
+      ResponseModelSuccessPositive<R>(
+        data: data as R,
+      );
+}

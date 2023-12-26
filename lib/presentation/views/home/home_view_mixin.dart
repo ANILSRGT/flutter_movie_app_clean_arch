@@ -10,11 +10,23 @@ mixin HomeViewMixin on BaseViewState<HomeView>
   void initState() {
     super.initState();
     homeViewCubit = HomeViewCubit();
+
+    _onRefresh();
   }
 
   @override
   void dispose() {
     homeViewCubit.close();
     super.dispose();
+  }
+
+  Future<void> _onRefresh() async {
+    await Future.wait([
+      _initPopularMovies(),
+    ]);
+  }
+
+  Future<void> _initPopularMovies() async {
+    await context.read<MovieCubit>().fetchPopularMovies();
   }
 }

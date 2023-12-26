@@ -22,8 +22,10 @@ mixin SplashViewMixin on BaseViewState<SplashView>
   Future<void> _initSplash() async {
     splashViewCubit.changeBusy(true);
 
+    unawaited(context.read<MovieCubit>().fetchPopularMovies());
+
     final elapsedMs = await waitOperation(() async {
-      // TODO: Add your initialization code here
+      // Add your init async operations here.
     });
 
     final remainingMs = 2000 - elapsedMs;

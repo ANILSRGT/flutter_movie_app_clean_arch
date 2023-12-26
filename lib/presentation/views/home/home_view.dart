@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:core/core.dart';
@@ -55,6 +57,8 @@ class _HomeViewState extends BaseViewState<HomeView>
 
   Widget _buildIntroduction() {
     // TODO: Implement introduction movie card
+    final movieCubit = context.watch<MovieCubit>();
+    final movies = movieCubit.state.popularMovies.take(3).toList();
     return CarouselSlider.builder(
       options: CarouselOptions(
         clipBehavior: Clip.none,
@@ -63,16 +67,18 @@ class _HomeViewState extends BaseViewState<HomeView>
         enlargeFactor: 0.25,
         enlargeCenterPage: true,
       ),
-      itemCount: 3,
+      itemCount: movies.length,
       itemBuilder: (_, index, realIndex) {
+        final backdropPath = movieCubit
+            .state.popularMoviesBackdropPaths[movies[index].id.toString()];
         return SizedBox(
           width: double.infinity,
           child: IntroductionMovieCard(
             id: index,
             onTap: (id) {},
-            title: 'Movie $index',
-            image: NetworkImage(''.ext.randomSquareImage),
-            description: 'Description $index',
+            title: movies[index].title ?? '',
+            image: backdropPath.nullOr(NetworkImage(backdropPath!)),
+            description: movies[index].overview ?? '',
           ),
         );
       },
@@ -80,8 +86,8 @@ class _HomeViewState extends BaseViewState<HomeView>
   }
 
   Widget _buildPopularMoviesSliver() {
-    final movieCubit = context.watch<MovieCubit>();
     // TODO: Implement movie card
+    final movieCubit = context.watch<MovieCubit>();
     return GridView.count(
       padding: context.padding.horizontalNormal,
       crossAxisCount: AdaptAllView.withT(
@@ -101,11 +107,13 @@ class _HomeViewState extends BaseViewState<HomeView>
         movieCubit.state.popularMovies.length,
         (index) {
           final movie = movieCubit.state.popularMovies[index];
+          final posterPath =
+              movieCubit.state.popularMoviesPosterPaths[movie.id.toString()];
           return MovieCard(
             id: movie.id,
             onTap: (id) {},
             title: movie.title ?? '',
-            image: NetworkImage(''.ext.randomSquareImage),
+            image: posterPath.nullOr(NetworkImage(posterPath!)),
             description: movie.overview ?? '',
           );
         },

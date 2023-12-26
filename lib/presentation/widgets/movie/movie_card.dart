@@ -24,7 +24,7 @@ class MovieCard<T> extends StatelessWidget {
   final String title;
 
   /// [image] is image of movie
-  final ImageProvider image;
+  final ImageProvider? image;
 
   /// [description] is description of movie
   final String description;
@@ -48,6 +48,7 @@ class MovieCard<T> extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: context.border.normalBorderRadius,
+          color: context.general.colorScheme.background,
           boxShadow: [
             BoxShadow(
               color: context.general.colorScheme.onBackground.withOpacity(0.2),
@@ -56,41 +57,46 @@ class MovieCard<T> extends StatelessWidget {
               offset: shadowOffset,
             ),
           ],
-          image: DecorationImage(
-            colorFilter: ColorFilter.mode(
-              context.general.colorScheme.background.withOpacity(0.2),
-              BlendMode.multiply,
+          image: image != null
+              ? DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                    context.general.colorScheme.background.withOpacity(0.2),
+                    BlendMode.multiply,
+                  ),
+                  image: image!,
+                  fit: BoxFit.cover,
+                )
+              : null,
+        ),
+        child: _buildImageContent(context),
+      ),
+    );
+  }
+
+  Padding _buildImageContent(BuildContext context) {
+    return Padding(
+      padding: context.padding.low,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: context.general.textTheme.titleLarge?.copyWith(
+              color: context.general.colorScheme.onBackground,
             ),
-            image: image,
-            fit: BoxFit.cover,
           ),
-        ),
-        child: Padding(
-          padding: context.padding.low,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.general.textTheme.titleLarge?.copyWith(
-                  color: context.general.colorScheme.onBackground,
-                ),
-              ),
-              Text(
-                description,
-                maxLines: descriptionMaxLines,
-                overflow: TextOverflow.ellipsis,
-                style: context.general.textTheme.bodyMedium?.copyWith(
-                  color: context.general.colorScheme.onBackground
-                      .withOpacity(0.75),
-                ),
-              ),
-            ],
+          Text(
+            description,
+            maxLines: descriptionMaxLines,
+            overflow: TextOverflow.ellipsis,
+            style: context.general.textTheme.bodyMedium?.copyWith(
+              color: context.general.colorScheme.onBackground.withOpacity(0.75),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
