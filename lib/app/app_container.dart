@@ -10,8 +10,11 @@ import 'package:flutter_movie_app/data/repositories/genre/movie_genre_repository
 import 'package:flutter_movie_app/data/repositories/movie/movie_repository_impl.dart';
 import 'package:flutter_movie_app/domain/usecases/movie/genre/get_movie_genre_by_id_usecase.dart';
 import 'package:flutter_movie_app/domain/usecases/movie/genre/get_movie_genres_usecase.dart';
+import 'package:flutter_movie_app/domain/usecases/movie/movies/get_movie_backdrop_url_usecase.dart';
+import 'package:flutter_movie_app/domain/usecases/movie/movies/get_movie_poster_url_usecase.dart';
 import 'package:flutter_movie_app/domain/usecases/movie/movies/get_popular_movies_usecase.dart';
 import 'package:flutter_movie_app/domain/usecases/movie/movies/get_trending_movies_usecase.dart';
+import 'package:flutter_movie_app/presentation/services/movie_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,7 +35,9 @@ final class AppContainer {
     final movieGenreRemoteDataSourceImpl =
         MovieGenreRemoteDataSourceImpl(http.Client());
     final movieRepositoryImpl = MovieRepositoryImpl(
-        movieRemoteDataSourceImpl, movieLocalDataSourceImpl);
+      movieRemoteDataSourceImpl,
+      movieLocalDataSourceImpl,
+    );
     final movieGenreRepositoryImpl =
         MovieGenreRepositoryImpl(movieGenreRemoteDataSourceImpl);
     final pBotToast = PBotToast();
@@ -50,13 +55,21 @@ final class AppContainer {
       ..registerLazySingleton(
         () => GetTrendingMoviesUseCase(movieRepositoryImpl),
       )
+      ..registerLazySingleton(
+        () => GetMovieBackdropUrlUseCase(movieRepositoryImpl),
+      )
+      ..registerLazySingleton(
+        () => GetMoviePosterUrlUseCase(movieRepositoryImpl),
+      )
       //~ Use cases (genre)
       ..registerLazySingleton(
         () => GetMovieGenresUseCase(movieGenreRepositoryImpl),
       )
       ..registerLazySingleton(
         () => GetMovieGenreByIdUseCase(movieGenreRepositoryImpl),
-      );
+      )
+      //* <------------- Services -------------> //
+      ..registerLazySingleton(MovieService.new);
   }
 
   /// Get an instance of a registered dependency

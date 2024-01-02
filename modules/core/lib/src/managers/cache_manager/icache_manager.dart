@@ -1,4 +1,4 @@
-import 'package:core/src/managers/cache_manager/ICache.dart';
+import 'package:core/src/managers/cache_manager/i_cache.dart';
 
 /// Interface for cache managers
 abstract class ICacheManager<T extends ICache> {

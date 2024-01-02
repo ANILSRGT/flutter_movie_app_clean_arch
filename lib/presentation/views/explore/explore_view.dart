@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:common/core.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -144,7 +145,11 @@ class _ExploreViewState extends BaseViewState<ExploreView>
               id: index,
               onTap: (id) {},
               title: 'Movie $index',
-              image: NetworkImage(''.ext.randomSquareImage),
+              image: CustomCachedNetworkImage(
+                imageUrl: ''.ext.randomSquareImage,
+                placeholder: (_, __) => const Icon(Icons.image),
+                errorWidget: (_, __, ___) => const Icon(Icons.error),
+              ).toProvider,
               description: 'Description $index',
             ),
           ),

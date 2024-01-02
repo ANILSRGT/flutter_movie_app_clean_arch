@@ -1,2 +1,2 @@
-export 'ICache.dart';
+export 'i_cache.dart';
 export 'icache_manager.dart';

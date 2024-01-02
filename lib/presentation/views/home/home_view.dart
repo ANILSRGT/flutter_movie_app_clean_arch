@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:common/core.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,8 @@ class _HomeViewState extends BaseViewState<HomeView>
   Widget _buildIntroduction() {
     // TODO: Implement introduction movie card
     final movieCubit = context.watch<MovieCubit>();
-    final movies = movieCubit.state.popularMovies.take(3).toList();
+    final movies = movieCubit.state.popularMovies.takeRandom(3).toList();
+    if (movies.isEmpty) return const SizedBox();
     return CarouselSlider.builder(
       options: CarouselOptions(
         clipBehavior: Clip.none,
@@ -77,7 +79,13 @@ class _HomeViewState extends BaseViewState<HomeView>
             id: index,
             onTap: (id) {},
             title: movies[index].title ?? '',
-            image: backdropPath.nullOr(NetworkImage(backdropPath!)),
+            image: backdropPath.nullOr(
+              CustomCachedNetworkImage(
+                imageUrl: backdropPath!,
+                placeholder: (_, __) => const Icon(Icons.image),
+                errorWidget: (_, __, ___) => const Icon(Icons.error),
+              ).toProvider,
+            ),
             description: movies[index].overview ?? '',
           ),
         );
@@ -113,7 +121,13 @@ class _HomeViewState extends BaseViewState<HomeView>
             id: movie.id,
             onTap: (id) {},
             title: movie.title ?? '',
-            image: posterPath.nullOr(NetworkImage(posterPath!)),
+            image: posterPath.nullOr(
+              CustomCachedNetworkImage(
+                imageUrl: posterPath!,
+                placeholder: (_, __) => const Icon(Icons.image),
+                errorWidget: (_, __, ___) => const Icon(Icons.error),
+              ).toProvider,
+            ),
             description: movie.overview ?? '',
           );
         },
